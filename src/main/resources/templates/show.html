@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<nav th:replace="base :: nav"></nav>
+<div class="container">
+<div class="py-3 px-3">
+
+</div>
+
+
+    <a href="/">Show All Courses</a><br />
+        Title :<span th:text="${course.title}" ></span><br />
+        Instructor :<span th:text="${course.instructor}" ></span><br />
+        Description :<span th:text="${course.description}" ></span><br />
+        Credits :<span th:text="${course.credit}" ></span><br />
+    <a href="@{/delete/{id}(id=${course.id})}">
+        Delete this Courses</a>
+
+
+<span th:replace="base :: jslinks"></span>
+</div>
+</body>
+</html>

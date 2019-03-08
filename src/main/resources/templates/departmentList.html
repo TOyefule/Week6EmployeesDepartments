@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Department List</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<nav th:replace="base :: nav"></nav>
+
+<a href="/adddepartment">Add a Department</a><br/>
+<a href="/add">Add a Employee</a><br/>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Department Head</th>
+        <th>Description</th>
+        <th>Actions</th>
+    </tr>
+    <tr th:each="department : ${departments}">
+        <td th:text="${department.name}"></td>
+        <td th:textbox="${department.head}"></td>
+        <td th:text="${department.description}"></td>
+        <td>
+            <a th:href="@{/update/{id}(id=${department.id})}">Update</a> -
+            <a th:href="@{/detail/{id}(id=${department.id})}">Details</a> -
+            <a th:href="@{/delete/{id}(id=${department.id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+<span th:replace="base :: jslinks"></span>
+
+</body>
+</html>

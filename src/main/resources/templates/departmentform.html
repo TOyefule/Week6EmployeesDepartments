@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <th:block th:insert="base :: header"></th:block>
+</head>
+<body>
+<nav th:replace="base :: nav"></nav>
+
+<form action="#"
+      th:action="@{/adddepartment}"
+      th:object="${department}"
+      method="post">
+
+    <input type="hidden" th:field="*{id}" />
+    <label for="">Department</label><br>
+    <select th:field="*{department}" class="form-control input-md">
+    <option th:each="option: ${departments}"
+            th:value="${option.id}">[[${department.name}]]</option>
+</select><br/>
+    <label for="">Name</label><br>
+    <input type="text" th:field="*{name}" />
+    <span th:if="${#fields.hasErrors('name')}"
+          th:errors="*{name}"></span><br/>
+    <label for="">Descritpion</label><br>
+    <input type="text" th:field="*{description}" />
+    <span th:if="${#fields.hasErrors('description')}"
+          th:errors="*{description}"></span><br/>
+    <!--<label for="">Department Head </label><br>
+    <input type="text" th:field="*{departmenthead}" />
+    <span th:if="${#fields.hasErrors('departmenthead')}"
+          th:errors="*{departmenthead}"></span><br/>-->
+
+    <input type="submit" value="Submit" />
+
+
+</form>
+<span th:replace="base :: jslinks"></span>
+
+</body>
+</html>
