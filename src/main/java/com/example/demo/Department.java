@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.Entitiy;
 
 
 import javax.persistence.*;
@@ -15,50 +15,32 @@ public class Department {
 
     @NotNull
     @Size(min=4)
-    private String name;
+    private String departmentName;
+
+    @OneToMany(mappedBy = "department")
+    private Set<Employee> employees;
 
 
-    @Size(min=1)
-    private String departmenthead;
-
-
-    @Size(min=1)
-    private String description;
 
     public long getId() {
         return id;
     }
 
-    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL,
-               fetch = FetchType.EAGER)
-            public Set<Employee> employees;
+//    @OneToMany(mappedBy = "department", cascade = CascadeType.ALL,
+//               fetch = FetchType.EAGER)
+//            public Set<Employee> employees;
+
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getDepartmentName() {
+        return departmentName;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDepartmenthead() {
-        return departmenthead;
-    }
-
-    public void setDepartmenthead(String departmenthead) {
-        this.departmenthead = departmenthead;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
     }
 
     public Set<Employee> getEmployees() {

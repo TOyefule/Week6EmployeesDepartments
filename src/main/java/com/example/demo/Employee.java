@@ -1,19 +1,15 @@
-package com.example.demo;
+package com.example.demo.Entitiy;
 
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Set;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private static long id;
+    private long id;
 
     @NotNull
     @Size(min=2)
@@ -23,20 +19,18 @@ public class Employee {
     @Size(min=10)
     private String jobtitle;
 
-    @NotNull
-    @Size(min=6)
-    private String department;
-  //  public Set<Department> department;
+    @ManyToOne
+    private Department department;
 
     @NotNull
     private String photo;
 
-    public static long getId() {
+    public long getId() {
         return id;
     }
 
-    public static void setId(long id) {
-        Employee.id = id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -55,11 +49,11 @@ public class Employee {
         this.jobtitle = jobtitle;
     }
 
-    public String getDepartment() {
+    public Department getDepartment() {
         return department;
     }
 
-    public void setDepartment(String department) {
+    public void setDepartment(Department department) {
         this.department = department;
     }
 
@@ -70,11 +64,4 @@ public class Employee {
     public void setPhoto(String photo) {
         this.photo = photo;
     }
-
-    /*@ManyToOne(mappedBy = "employee", cascade = CascadeType.ALL,
-            fetch = FetchType.EAGER)*/
-
-    /*public Set<Department> departments;*/
-
-
 }
